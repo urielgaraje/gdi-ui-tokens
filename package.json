@@ -1,15 +1,27 @@
 {
-  "name": "gdi-ui-tokens",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0"
-  }
+    "name": "@urielgaraje/gdi-ui-tokens",
+    "private": false,
+    "version": "0.0.0",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urielgaraje/gdi-ui-tokens.git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/@urielgaraje"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@types/node": "^22.13.10",
+        "typescript": "~5.7.2",
+        "vite": "^6.2.0"
+    },
+    "dependencies": {
+        "@tokens-studio/sd-transforms": "^1.2.9",
+        "style-dictionary": "^4.3.3"
+    }
 }
