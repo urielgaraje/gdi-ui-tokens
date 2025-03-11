@@ -1,0 +1,145 @@
+name: Publish Library and Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: write
+  pages: write
+  id-token: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      is_style_commit: ${{ steps.check-commit.outputs.is_style_commit }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check commit message
+        id: check-commit
+        run: |
+          if git log -1 --pretty=%B | grep -qE "^style:"; then
+            echo "is_style_commit=true" >> $GITHUB_ENV
+            echo "is_style_commit=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_style_commit=false" >> $GITHUB_ENV
+            echo "is_style_commit=false" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Build project
+        run: npm run build
+
+  build-tokens:
+    runs-on: ubuntu-latest
+    needs: setup
+    if: needs.setup.outputs.is_style_commit == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Build Tokens
+        run: npm run build:tokens
+
+      - name: Configure Git User
+        uses: fregante/setup-git-user@v2
+
+      - name: Commit and Push Token Changes
+        run: |
+          git add .
+          git commit -m "chore: update tokens [ci skip]" || echo "No changes to commit"
+          git push
+
+  versioning:
+    runs-on: ubuntu-latest
+    needs: [build, build-tokens]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Configure Git User
+        uses: fregante/setup-git-user@v2
+
+      - name: Pull latest changes before versioning
+        run: git pull --rebase
+
+      - name: Run versioning
+        run: npm run release
+
+      - name: Push changes
+        run: git push --follow-tags
+
+  publish-gpr:
+    needs: [versioning]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Pull latest changes
+        run: git pull --rebase
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+          scope: ${{ github.repository_owner }}
+
+      - name: Build project before publishing
+        run: npm run build
+
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

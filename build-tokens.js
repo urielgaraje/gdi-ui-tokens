@@ -17,7 +17,7 @@ register(StyleDictionary, {
 const sd = new StyleDictionary({
     // make sure to have source match your token files!
     // be careful about accidentally matching your package.json or similar files that are not tokens
-    source: ['src/tokens/*.json'],
+    source: ['src/figma/*.json'],
     preprocessors: ['tokens-studio'], // <-- since 0.16.0 this must be explicit
     platforms: {
         css: {

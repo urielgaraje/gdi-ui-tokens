@@ -1,0 +1,52 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-blue-50: #eeeeff;
+  --color-blue-100: #e0e1ff;
+  --color-blue-200: #c7c8fe;
+  --color-blue-300: #a5a7fc;
+  --color-blue-400: #8184f8;
+  --color-blue-500: #6366f1;
+  --color-blue-600: #4649e5;
+  --color-blue-700: #383bca;
+  --color-blue-800: #3032a3;
+  --color-blue-900: #2e3081;
+  --color-blue-950: #1b1c4b;
+  --color-gray-50: #f7f8f8;
+  --color-gray-100: #edeef1;
+  --color-gray-200: #d8dbdf;
+  --color-gray-300: #b6bac3;
+  --color-gray-400: #8e95a2;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #5b616e;
+  --color-gray-700: #4a4e5a;
+  --color-gray-800: #40444c;
+  --color-gray-900: #383a42;
+  --color-gray-950: #25272c;
+  --color-base-white: #ffffff;
+  --color-base-black: #1E1F20;
+  --space-0: 0px;
+  --space-50: 4px;
+  --space-100: 8px;
+  --space-150: 12px;
+  --space-200: 16px;
+  --space-250: 20px;
+  --space-300: 24px;
+  --space-none: 0px;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --surface-primary: #1E1F20;
+  --button-background-primary: #a5a7fc;
+  --button-label-primary: #ffffff;
+  --text-primary: #f7f8f8;
+  --text-secondary: #6b7280;
+}
