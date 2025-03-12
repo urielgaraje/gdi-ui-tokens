@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.3 (2025-03-12)
+
+
+### Styles
+
+* change button color ([cacbfbd](https://github.com/urielgaraje/gdi-ui-tokens/commit/cacbfbdf97fe50b73cfcc68c65faf06470203044))
+
+
+* update tokens [ci skip] ([5b1b079](https://github.com/urielgaraje/gdi-ui-tokens/commit/5b1b07944ac49ec1948a6a12862f43339b96893b))
+
 ### 0.0.2 (2025-03-11)
 
 
