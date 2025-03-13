@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.6 (2025-03-13)
+
+
+### Styles
+
+* update blue color ([10fb1df](https://github.com/urielgaraje/gdi-ui-tokens/commit/10fb1df3e2111ce5f9d356175f0c6fdc277e7c61))
+
+
+* update tokens [ci skip] ([b83b667](https://github.com/urielgaraje/gdi-ui-tokens/commit/b83b66744330af4ccd77cfa28e36ab9d5871e4aa))
+
 ### 0.0.5 (2025-03-12)
 
 
