@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.9 (2025-05-30)
+
+
+### Styles
+
+* try workflow ([67b9197](https://github.com/urielgaraje/gdi-ui-tokens/commit/67b919772de1ba3c70ceed27e6a5484711d96a47))
+
+
+* update tokens [ci skip] ([1362449](https://github.com/urielgaraje/gdi-ui-tokens/commit/13624499e6b40bf91d0ad5c84eb3f820d5112035))
+
 ### 0.0.8 (2025-04-10)
 
 
